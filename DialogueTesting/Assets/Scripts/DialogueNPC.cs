@@ -40,7 +40,7 @@ public class DialogueNPC : MonoBehaviour
 
         //dialogueCanvas.enabled = true;
 
-        playerObject.GetComponent<FirstPersonAIO>().enabled = false;
+       // playerObject.GetComponent<FirstPersonAIO>().enabled = false;
        
 
         Cursor.lockState = CursorLockMode.None;
@@ -56,7 +56,7 @@ public class DialogueNPC : MonoBehaviour
 
        // dialogueCanvas.enabled = false;
 
-        playerObject.GetComponent<FirstPersonAIO>().enabled = true;
+        //playerObject.GetComponent<FirstPersonAIO>().enabled = true;
        
 
         Cursor.lockState = CursorLockMode.Locked;
