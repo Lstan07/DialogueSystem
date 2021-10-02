@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class InkManager : MonoBehaviour
 {
     [SerializeField]
@@ -16,10 +15,15 @@ public class InkManager : MonoBehaviour
 
     [SerializeField]
     private VerticalLayoutGroup _choiceButtonContainer;
-
     [SerializeField]
     private Button _choiceButtonPrefab;
 
+    [SerializeField]
+    private Color _normalTextColor;
+    [SerializeField]
+    private Color _thoughtTextColor;
+
+    // Start is called before the first frame update
     void Start()
     {
         StartStory();
@@ -29,6 +33,7 @@ public class InkManager : MonoBehaviour
     {
         _story = new Story(_inkJsonAsset.text);
         DisplayNextLine();
+        RefreshChoiceView();
     }
 
     public void DisplayNextLine()
@@ -39,6 +44,8 @@ public class InkManager : MonoBehaviour
 
             text = text?.Trim(); // removes white space from text
 
+            ApplyStyling();
+
             _textField.text = text; // displays new text
         }
         else if (_story.currentChoices.Count > 0)
@@ -47,16 +54,29 @@ public class InkManager : MonoBehaviour
         }
     }
 
+    private void ApplyStyling()
+    {
+        if (_story.currentTags.Contains("thought"))
+        {
+            _textField.color = new Color(_textField.color.r, _textField.color.g, _textField.color.b, 0.5f);
+            _textField.fontStyle = FontStyle.Italic;
+        }
+        else
+        {
+            _textField.color = new Color(_textField.color.r, _textField.color.g, _textField.color.b, 1f);
+            _textField.fontStyle = FontStyle.Normal;
+        }
+    }
+
     private void DisplayChoices()
     {
-        // checks if choices are already being displaye
+        // check if choices are already being displayed
         if (_choiceButtonContainer.GetComponentsInChildren<Button>().Length > 0) return;
 
-        for (int i = 0; i < _story.currentChoices.Count; i++) // iterates through all choices
+        for (int i = 0; i < _story.currentChoices.Count; i++)
         {
-
             var choice = _story.currentChoices[i];
-            var button = CreateChoiceButton(choice.text); // creates a choice button
+            var button = CreateChoiceButton(choice.text);
 
             button.onClick.AddListener(() => OnClickChoiceButton(choice));
         }
@@ -66,6 +86,7 @@ public class InkManager : MonoBehaviour
     {
         // creates the button from a prefab
         var choiceButton = Instantiate(_choiceButtonPrefab);
+
         choiceButton.transform.SetParent(_choiceButtonContainer.transform, false);
 
         // sets text on the button
@@ -77,12 +98,13 @@ public class InkManager : MonoBehaviour
 
     void OnClickChoiceButton(Choice choice)
     {
-        _story.ChooseChoiceIndex(choice.index); // tells ink which choice was selected
-        RefreshChoiceView(); // removes choices from the screen
+        _story.ChooseChoiceIndex(choice.index);
+        _story.Continue();
+        RefreshChoiceView();
         DisplayNextLine();
-
     }
 
+    // Destroys all the old content and choices.
     void RefreshChoiceView()
     {
         if (_choiceButtonContainer != null)
@@ -94,6 +116,4 @@ public class InkManager : MonoBehaviour
         }
     }
 
-
 }
-
