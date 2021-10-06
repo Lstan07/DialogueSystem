@@ -18,22 +18,24 @@ public class InkManager : MonoBehaviour
     [SerializeField]
     private Button _choiceButtonPrefab;
 
-    [SerializeField]
+    /*[SerializeField]
     private Color _normalTextColor;
     [SerializeField]
-    private Color _thoughtTextColor;
+    private Color _thoughtTextColor;*/
 
     // Start is called before the first frame update
     void Start()
     {
-        StartStory();
+        //StartStory();
     }
 
-    private void StartStory()
+    public void StartStory()
     {
         _story = new Story(_inkJsonAsset.text);
         DisplayNextLine();
         RefreshChoiceView();
+       
+        
     }
 
     public void DisplayNextLine()
@@ -44,7 +46,7 @@ public class InkManager : MonoBehaviour
 
             text = text?.Trim(); // removes white space from text
 
-            ApplyStyling();
+            /*ApplyStyling();*/
 
             _textField.text = text; // displays new text
         }
@@ -54,7 +56,7 @@ public class InkManager : MonoBehaviour
         }
     }
 
-    private void ApplyStyling()
+ /*   private void ApplyStyling()
     {
         if (_story.currentTags.Contains("thought"))
         {
@@ -66,9 +68,9 @@ public class InkManager : MonoBehaviour
             _textField.color = new Color(_textField.color.r, _textField.color.g, _textField.color.b, 1f);
             _textField.fontStyle = FontStyle.Normal;
         }
-    }
+    }*/
 
-    private void DisplayChoices()
+    public void DisplayChoices()
     {
         // check if choices are already being displayed
         if (_choiceButtonContainer.GetComponentsInChildren<Button>().Length > 0) return;
@@ -115,5 +117,7 @@ public class InkManager : MonoBehaviour
             }
         }
     }
+
+   
 
 }

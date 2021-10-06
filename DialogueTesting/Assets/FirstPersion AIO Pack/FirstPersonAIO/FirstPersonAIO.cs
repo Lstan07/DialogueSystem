@@ -249,6 +249,9 @@ public class FirstPersonAIO : MonoBehaviour {
         #region Look Settings - Awake
         originalRotation = transform.localRotation.eulerAngles;
 
+
+
+
         #endregion 
 
         #region Movement Settings - Awake
@@ -273,7 +276,9 @@ public class FirstPersonAIO : MonoBehaviour {
     private void Start(){
         #region Look Settings - Start
 
-        if(autoCrosshair || drawStaminaMeter){
+       
+
+        if (autoCrosshair || drawStaminaMeter){
             Canvas canvas = new GameObject("AutoCrosshair").AddComponent<Canvas>();
             canvas.gameObject.AddComponent<CanvasScaler>().uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
@@ -304,8 +309,17 @@ public class FirstPersonAIO : MonoBehaviour {
                 StaminaMeter.color = new Color(0,0,0,0);
             }
         }
+
+        
+
         cameraStartingPosition = playerCamera.transform.localPosition;
-        if(lockAndHideCursor) { Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false; }
+        if(lockAndHideCursor) 
+        {
+
+            Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false; 
+        
+        
+        }
         baseCamFOV = playerCamera.fieldOfView;
         #endregion
 
@@ -338,7 +352,13 @@ public class FirstPersonAIO : MonoBehaviour {
 
         #region Look Settings - Update
 
-            if(enableCameraMovement && !controllerPauseState){
+        if (DialogueManager.GetInstance().dialogueIsPlaying)
+        {
+            
+            return;
+        }
+
+        if (enableCameraMovement && !controllerPauseState){
             float mouseYInput = 0;
             float mouseXInput = 0;
             float camFOV = playerCamera.fieldOfView;
@@ -490,10 +510,18 @@ public class FirstPersonAIO : MonoBehaviour {
             }
         }
 
-            #endregion
+        #endregion
 
-        if(playerCanMove && !controllerPauseState){
-          fps_Rigidbody.velocity = MoveDirection+(Vector3.up * yVelocity);
+        if (DialogueManager.GetInstance().dialogueIsPlaying)
+        {
+            return;
+        }
+
+        if (playerCanMove && !controllerPauseState){
+
+          
+
+            fps_Rigidbody.velocity = MoveDirection+(Vector3.up * yVelocity);
 
         } else{fps_Rigidbody.velocity = Vector3.zero;}
 
@@ -738,8 +766,14 @@ public class FirstPersonAIO : MonoBehaviour {
     }
 
     public void ControllerPause(){
+
+     
+
         controllerPauseState = !controllerPauseState;
         if(lockAndHideCursor){
+
+           
+
             Cursor.lockState = controllerPauseState? CursorLockMode.None : CursorLockMode.Locked;
             Cursor.visible = controllerPauseState;
         }
