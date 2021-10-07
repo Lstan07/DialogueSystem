@@ -56,6 +56,8 @@ public class DialogueManager : MonoBehaviour
             choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
             index++;
         }
+
+        
     }
 
     private void Update()
@@ -70,6 +72,8 @@ public class DialogueManager : MonoBehaviour
 
            ContinueStory();
        }
+
+       
     }
 
     public void EnterDialogueMode(TextAsset inkJSON)
