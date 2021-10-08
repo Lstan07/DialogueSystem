@@ -67,7 +67,7 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-       if (Input.GetMouseButtonDown(1))
+       if (Input.GetMouseButtonDown(0))
        {
 
            ContinueStory();
@@ -113,6 +113,13 @@ public class DialogueManager : MonoBehaviour
             StopAllCoroutines();
             StartCoroutine(TypeSentence(currentSentence));
         }
+
+       
+        if (currentStory.currentChoices.Count < choices.Length)
+        {
+            Debug.Log("shouldn't exit");
+        }
+        
         else
         {
             
@@ -130,7 +137,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         int index = 0;
-
+       
         foreach (Choice choice in currentChoices)
         {
             choices[index].gameObject.SetActive(true);
