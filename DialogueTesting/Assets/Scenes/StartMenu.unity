@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d02ea66169858841a61389a17fb6de6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadScene: IntroScene
+  loadScene: NewIntro
 --- !u!4 &1117711681
 Transform:
   m_ObjectHideFlags: 0

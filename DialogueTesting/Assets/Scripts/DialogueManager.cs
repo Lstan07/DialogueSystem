@@ -101,10 +101,10 @@ public class DialogueManager : MonoBehaviour
         animator.SetBool("IsOpen", false); 
         //dialogueText.text = ""; 
 
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName ("IntroScene"))
-        {
-            SceneManager.LoadScene("DialogueTesting");
-        }
+        //if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName ("IntroScene"))
+       // {
+           // SceneManager.LoadScene("DialogueTesting");
+       // }
     }
 
     private void ContinueStory()
@@ -121,10 +121,10 @@ public class DialogueManager : MonoBehaviour
         }
 
        
-        if (currentStory.currentChoices.Count < choices.Length)
-        {
-            Debug.Log("shouldn't exit");
-        }
+        //if (currentStory.currentChoices.Count < choices.Length)
+        //{
+           // Debug.Log("shouldn't exit");
+       // }
         
         else
         {

@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: 326c9d2d81059c04eaf54530f5d83dc3
   - enabled: 1
-    path: Assets/Scenes/IntroScene.unity
-    guid: b81a43b2f81b14f4fa42b75450c5fa51
+    path: Assets/Scenes/NewIntro.unity
+    guid: b0470a16faeb679458e834365c1f306b
   - enabled: 1
     path: Assets/Scenes/DialogueTesting.unity
     guid: 8df02183043304847bbabea36be9464a

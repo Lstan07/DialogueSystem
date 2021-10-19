@@ -7,21 +7,20 @@ using UnityEngine.UI;
 public class StartMenu : MonoBehaviour
 {
 
-    public string loadScene;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void StartGame()
     {
-        SceneManager.LoadScene(loadScene);
+        SceneManager.LoadScene("NewIntro");
+    }
+
+    public void MenuScene()
+    {
+        SceneManager.LoadScene("StartMenu");
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+        Debug.Log("i have quit");
     }
 }
