@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Ink.Runtime;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -25,7 +26,6 @@ public class DialogueManager : MonoBehaviour
 
     private float speed = 0.03f;
 
-    
 
     private static DialogueManager instance;
 
@@ -86,6 +86,7 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = true;
         //dialoguePanel.SetActive(true);
         animator.SetBool("IsOpen", true);
+        Debug.Log("is this working ??");
 
         ContinueStory();
     }  
@@ -99,6 +100,11 @@ public class DialogueManager : MonoBehaviour
         // dialoguePanel.SetActive(false);
         animator.SetBool("IsOpen", false); 
         //dialogueText.text = ""; 
+
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName ("IntroScene"))
+        {
+            SceneManager.LoadScene("DialogueTesting");
+        }
     }
 
     private void ContinueStory()
@@ -126,6 +132,8 @@ public class DialogueManager : MonoBehaviour
             ExitDialogueMode();
         }
     }
+
+   
 
     private void DisplayChoices()
     {

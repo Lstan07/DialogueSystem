@@ -13,6 +13,7 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame
@@ -30,21 +31,24 @@ public class PauseMenu : MonoBehaviour
             }
         }
     }
-
-    public void Resume()
-    {
-        pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
-        gameIsPause = false;
-        
-    }
-
+    
     public void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         gameIsPause = true;
     }
+
+    public void Resume()
+    {
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        gameIsPause = false;
+        Debug.Log(Time.timeScale);
+        
+    }
+
+  
 
     public void LoadMenu()
     {
